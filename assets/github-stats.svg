@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="240">
+  <rect width="100%" height="100%" fill="#071025"/>
+  <text x="24" y="36" fill="#D7E6FF" font-size="20" font-weight="700">Domisnnet — GitHub Activity</text>
+
+  <g transform="translate(24,64)">
+    <rect width="280" height="72" rx="8" fill="#0f1724" stroke="#233044"/>
+    <text x="16" y="24" fill="#cfe8ff" font-size="12" font-weight="600">Commits oficiais</text>
+    <text x="16" y="52" fill="#7DD3FC" font-size="24" font-weight="700">0</text>
+  </g>
+
+  <g transform="translate(340,64)">
+    <rect width="280" height="72" rx="8" fill="#0f1724" stroke="#233044"/>
+    <text x="16" y="24" fill="#cfe8ff" font-size="12" font-weight="600">Commits ampliados</text>
+    <text x="16" y="52" fill="#A78BFA" font-size="24" font-weight="700">1.5k</text>
+  </g>
+
+  <g transform="translate(656,64)">
+    <rect width="280" height="72" rx="8" fill="#0f1724" stroke="#233044"/>
+    <text x="16" y="24" fill="#cfe8ff" font-size="12" font-weight="600">Contribuições (ano)</text>
+    <text x="16" y="52" fill="#60A5FA" font-size="24" font-weight="700">0</text>
+  </g>
+
+  <text x="24" y="220" fill="#6b7c8f" font-size="10">Dados gerados — 40 repositórios analisados</text>
+</svg>

@@ -1,3 +1,7 @@
+## Estatísticas do Repositório
+![GitHub Stats](https://github.com/Domisnnet/github-stats-gnr/blob/main/assets/github-stats.png)
+
+
 # github-stats-generator
 
 Gerador automático de imagens SVG/PNG com estatísticas do GitHub (versão premium).
