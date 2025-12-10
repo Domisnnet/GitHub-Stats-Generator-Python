@@ -1,3 +1,8 @@
+import os
+
+OUTPUT_DIR = "output"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 import matplotlib.pyplot as plt
 from utils.plot_theme import apply_dark_tech_theme
 from utils.github_api import get_repos, get_commit_activity
