@@ -31,6 +31,7 @@ jobs:
       # Define o PYTHONPATH para permitir imports de utils/
       - name: Configure PYTHONPATH
         run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+        export PYTHONPATH=$PWD
 
       # Executa o gerador de gráficos
       - name: Generate Stats
