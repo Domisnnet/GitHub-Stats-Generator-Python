@@ -1,5 +1,5 @@
 ## Estatísticas do Repositório
-![GitHub Stats](github-stats.png)
+![GitHub Stats](output/github-stats.png)
 
 
 # github-stats-generator
