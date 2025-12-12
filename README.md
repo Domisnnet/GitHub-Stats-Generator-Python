@@ -46,7 +46,7 @@ Tudo sem intervenção humana.
 
 ## ✦ Estrutura do Projeto
 
-github-stats-gnr/
+github-stats-generator/
 │
 ├── generators/
 │ └── generate_commits.py # Script principal de geração do gráfico
@@ -65,7 +65,6 @@ github-stats-gnr/
 └── workflows/
 └── generate_stats.yml # Automação com GitHub Actions
 
-
 ---
 
 ## ✦ Como Rodar Localmente
@@ -74,3 +73,18 @@ github-stats-gnr/
 ```bash
 git clone https://github.com/Domisnnet/github-stats-gnr
 cd github-stats-gnr
+
+---
+
+### 2. Instale as dependências
+pip install -r requirements.txt
+
+---
+
+### 3. Execute o gerador manualmente
+python generators/generate_commits.py
+
+---
+
+### 4.O arquivo será criado em:
+output/github-stats.png
