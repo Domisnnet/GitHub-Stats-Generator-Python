@@ -3,10 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 from datetime import datetime
 from collections import Counter
-
-# Importações corrigidas: Usando 'src' conforme a sua estrutura de pastas
-from src.github_api import get_repos, get_commit_activity
-from src.plot_theme import apply_dark_tech_theme, apply_vertical_gradient
+from utils.github_api import get_repos, get_commit_activity
+from utils.plot_theme import apply_dark_tech_theme, apply_vertical_gradient
 
 # Constantes de Estilo
 CARD_BORDER_COLOR = "#4cc9f0"
