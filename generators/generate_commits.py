@@ -1,5 +1,3 @@
-# generators/generate_commits.py
-
 import os
 from datetime import datetime
 import matplotlib.pyplot as plt
