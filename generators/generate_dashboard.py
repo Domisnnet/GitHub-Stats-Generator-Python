@@ -39,7 +39,7 @@ class DashboardGenerator:
         if label:
             self.ax.text(
                 x + 0.02,
-                y + h - 0.06,
+                y + h - 0.03,
                 label,
                 fontsize=fontsize,
                 color="#e0eaff",
@@ -76,13 +76,13 @@ class DashboardGenerator:
 
     def _draw_layout(self):
         self._draw_card(0.05, 0.64, 0.38, 0.28, "GitHub Overview")
-        self._draw_card(0.57, 0.64, 0.38, 0.28, "Total Commits (Donut)")
-        self._draw_card(0.05, 0.16, 0.90, 0.38, "Top Linguagens (Ranking)")
+        self._draw_card(0.57, 0.64, 0.38, 0.28, "Total Commits")
+        self._draw_card(0.06, 0.16, 0.89, 0.38, "Top Linguagens")
 
     def _draw_kpis(self):
         self.ax.text(
             0.07,
-            0.86,
+            0.83,
             f"Repositórios Totais: {self.total_repos}",
             color=KPI_TEXT_COLOR,
             fontsize=16,
@@ -154,7 +154,7 @@ class DashboardGenerator:
         lang_ax.set_facecolor(CARD_FACE_COLOR)
         bars = lang_ax.barh(labels, percentages, height=0.6, color=CARD_BORDER_COLOR)
         lang_ax.set_xticks([])
-        lang_ax.tick_params(axis="y", length=0, labelsize=14, pad=30)
+        lang_ax.tick_params(axis="y", length=0, labelsize=14, pad=20)
         for bar in bars:
             width = bar.get_width()
             lang_ax.text(width + 3.5, bar.get_y() + bar.get_height() / 2, f"{width:.1f}%", va="center", color=KPI_TEXT_COLOR, fontsize=12, fontweight="bold")
