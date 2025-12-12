@@ -87,9 +87,9 @@ class DashboardGenerator:
         self._draw_card(0.06, 0.15, 0.88, 0.40, "Top Linguagens (Ranking)") 
 
     def _draw_kpis(self):
-        self.ax.text(0.08, 0.85, f"Repositórios Totais: {self.total_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
-        self.ax.text(0.08, 0.78, f"Repositórios Ativos: {self.active_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
-        self.ax.text(0.08, 0.71, f"Commits Totais: {self.total_commits}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.08, 0.86, f"Repositórios Totais: {self.total_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.08, 0.77, f"Repositórios Ativos: {self.active_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.08, 0.68, f"Commits Totais: {self.total_commits}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
 
     def _draw_commits_donut(self):
         commit_ax = self.fig.add_axes([0.67, 0.64, 0.23, 0.23], facecolor=CARD_FACE_COLOR)
@@ -120,11 +120,12 @@ class DashboardGenerator:
         labels.reverse()
         percentages.reverse()
 
-        lang_ax = self.fig.add_axes([0.15, 0.24, 0.75, 0.28], facecolor=CARD_FACE_COLOR)
+        lang_ax = self.fig.add_axes([0.15, 0.28, 0.75, 0.26], facecolor=CARD_FACE_COLOR)
         
         bars = lang_ax.barh(labels, percentages, height=0.6, color=CARD_BORDER_COLOR)
 
         lang_ax.set_xticks([])
+        # Padding final máximo para os nomes das linguagens
         lang_ax.tick_params(axis='y', length=0, labelsize=14, pad=30) 
 
         for bar in bars:
