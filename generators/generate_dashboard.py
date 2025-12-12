@@ -76,9 +76,10 @@ class DashboardGenerator:
         plt.axis("off")
 
     def _draw_layout(self):
-        self._draw_card(0.06, 0.60, 0.35, 0.30, "GitHub Overview")
-        self._draw_card(0.59, 0.60, 0.35, 0.30, "Total Commits (Donut)")
-        self._draw_card(0.06, 0.15, 0.88, 0.40, "Top Linguagens (Ranking)")
+        self._draw_card(0.06, 0.62, 0.35, 0.26, "GitHub Overview")
+        self._draw_card(0.59, 0.62, 0.35, 0.26, "Total Commits (Donut)")
+        self._draw_card(0.06, 0.18, 0.88, 0.36, "Top Linguagens (Ranking)")
+
 
     def _draw_kpis(self):
         self.ax.text(0.08, 0.86, f"Repositórios Totais: {self.total_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
@@ -87,7 +88,7 @@ class DashboardGenerator:
 
     def _draw_commits_donut(self):
         from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-        commit_ax = inset_axes(self.ax, width="20%", height="35%", bbox_to_anchor=(0.60, 0.60, 0.35, 0.30), bbox_transform=self.ax.transAxes, loc="center")
+        commit_ax = inset_axes(self.ax, width="65%", height="80%", bbox_to_anchor=(0.59, 0.62, 0.35, 0.26),bbox_transform=self.ax.transAxes,loc="center")
         commit_ax.set_facecolor(CARD_FACE_COLOR)
         commit_ax.set_xticks([])
         commit_ax.set_yticks([])
