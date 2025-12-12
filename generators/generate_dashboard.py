@@ -104,7 +104,7 @@ class DashboardGenerator:
     def _draw_languages_bar(self, max_langs=7):
         from mpl_toolkits.axes_grid1.inset_locator import inset_axes
         if not self.langs or self.total_repos == 0:
-            lang_ax = inset_axes(self.ax, width="85%", height="55%", bbox_to_anchor=(0.06, 0.15, 0.88, 0.40), bbox_transform=self.ax.transAxes, loc="center")
+            lang_ax = inset_axes(self.ax, width="92%", height="70%", bbox_to_anchor=(0.06, 0.18, 0.88, 0.36),bbox_transform=self.ax.transAxes,loc="center")
             lang_ax.set_axis_off()
             lang_ax.text(0.5, 0.5, "Dados de Linguagem Indisponíveis.", ha="center", va="center", fontsize=16, color="#ff4d6d", transform=lang_ax.transAxes)
             return
