@@ -154,7 +154,7 @@ class DashboardGenerator:
         lang_ax.set_facecolor(CARD_FACE_COLOR)
         bars = lang_ax.barh(labels, percentages, height=0.6, color=CARD_BORDER_COLOR)
         lang_ax.set_xticks([])
-        lang_ax.tick_params(axis="y", length=0, labelsize=14, pad=10)
+        lang_ax.tick_params(axis="y", length=0, labelsize=14, pad=5)
         for bar in bars:
             width = bar.get_width()
             lang_ax.text(width + 3.5, bar.get_y() + bar.get_height() / 2, f"{width:.1f}%", va="center", color=KPI_TEXT_COLOR, fontsize=12, fontweight="bold")
