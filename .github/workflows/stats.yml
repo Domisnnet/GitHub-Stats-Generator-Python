@@ -27,7 +27,7 @@ jobs:
           export PYTHONPATH=${{ github.workspace }}
 
       - name: Generate Stats
-        run: python generators/generate_commits.py
+        run: python generators/generate_dashboard.py
 
       - name: Commit and Push
         run: |
