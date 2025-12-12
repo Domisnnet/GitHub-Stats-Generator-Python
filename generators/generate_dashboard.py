@@ -4,7 +4,7 @@ from matplotlib.patches import FancyBboxPatch
 from datetime import datetime
 from collections import Counter
 import requests
-import time # Necessário para a API mais robusta
+import time 
 
 # Importações CORRIGIDAS: Usando 'utils'
 from utils.github_api import get_repos, get_commit_activity
@@ -14,7 +14,7 @@ from utils.plot_theme import apply_dark_tech_theme, apply_vertical_gradient
 CARD_BORDER_COLOR = "#4cc9f0"
 CARD_FACE_COLOR = "#111827"
 KPI_TEXT_COLOR = "#c3dafe"
-OUTPUT_PATH = "output/dashboard.png" # Usando o nome correto que você quer para o Actions
+OUTPUT_PATH = "output/dashboard.png" 
 
 class DashboardGenerator:
     """Gera um dashboard de estatísticas do GitHub usando Matplotlib."""
@@ -29,9 +29,7 @@ class DashboardGenerator:
         self.fig = None
         self.ax = None
 
-    # --- Método Auxiliar para Desenho de Cards ---
     def _draw_card(self, x, y, w, h, label="", fontsize=18):
-        """Desenha um card premium com bordas arredondadas."""
         card = FancyBboxPatch((x, y), w, h,
                               boxstyle="round,pad=0.03,rounding_size=0.05",
                               linewidth=1.2,
@@ -46,14 +44,11 @@ class DashboardGenerator:
                          label, fontsize=fontsize, color="#e0eaff",
                          fontweight="bold", transform=self.ax.transAxes)
 
-    # --- Coleta de Dados ---
     def _collect_data(self):
-        """Coleta todos os dados necessários da API do GitHub."""
         print(f"Coletando dados para o usuário: {self.username}...")
-        
         self.repos = get_repos(self.username)
         if self.repos is None:
-            print("ERRO: Falha ao obter repositórios. Verifique o Token e o usuário.")
+            print("ERRO: Falha ao obter repositórios.")
             return
             
         self.total_repos = len(self.repos)
@@ -61,12 +56,9 @@ class DashboardGenerator:
         
         for repo in self.repos:
             repo_commits = 0
-            
-            # ATENÇÃO: Essa requisição é sequencial (lenta), mas é a forma atual.
             activity = get_commit_activity(repo["full_name"]) 
             
             if isinstance(activity, list):
-                # Conta commits
                 for week in activity:
                     repo_commits += week.get("total", 0)
                 
@@ -78,16 +70,14 @@ class DashboardGenerator:
             if repo.get("language"):
                 all_languages.append(repo["language"])
 
-        # Contar a frequência das linguagens
         self.langs = Counter(all_languages)
         print("Coleta de dados concluída.")
 
-    # --- Configuração de Layout e Figura ---
     def _setup_figure(self):
-        """Inicializa a figura e aplica o tema premium."""
         apply_dark_tech_theme()
         
-        self.fig = plt.figure(figsize=(15, 9), dpi=300)
+        # Aumentar um pouco a figura principal (opcional)
+        self.fig = plt.figure(figsize=(16, 9.5), dpi=300) 
         self.ax = self.fig.add_subplot(111)
         self.ax.set_facecolor("#0a0f1f")
         
@@ -96,30 +86,19 @@ class DashboardGenerator:
         plt.axis("off")
         
     def _draw_layout(self):
-        """Desenha a estrutura e os cards principais."""
         self._draw_card(0.05, 0.60, 0.40, 0.30, "GitHub Overview")
         self._draw_card(0.50, 0.60, 0.40, 0.30, "Total Commits (Donut)")
-        # Renomeado o label para refletir o novo gráfico de barras
-        self._draw_card(0.05, 0.15, 0.85, 0.40, "Top Linguagens (Ranking)")
+        # Ajustar a altura do card de linguagens para melhor visualização
+        self._draw_card(0.05, 0.15, 0.85, 0.40, "Top Linguagens (Ranking)") 
 
     def _draw_kpis(self):
-        """Preenche o card de Overview com os KPIs."""
-        self.ax.text(0.07, 0.82,
-                     f"Repositórios Totais: {self.total_repos}",
-                     color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.07, 0.82, f"Repositórios Totais: {self.total_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.07, 0.78, f"Repositórios Ativos: {self.active_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.07, 0.74, f"Commits Totais: {self.total_commits}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
 
-        self.ax.text(0.07, 0.78,
-                     f"Repositórios Ativos: {self.active_repos}",
-                     color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
-
-        self.ax.text(0.07, 0.74,
-                     f"Commits Totais: {self.total_commits}",
-                     color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
-
-    # --- Gráfico 1: Donut de Commits (Original) ---
     def _draw_commits_donut(self):
-        """Desenha o gráfico Donut de commits."""
-        commit_ax = self.fig.add_axes([0.58, 0.63, 0.23, 0.23], facecolor=CARD_FACE_COLOR)
+        # NOVO POSICIONAMENTO PARA MELHOR CENTRALIZAÇÃO
+        commit_ax = self.fig.add_axes([0.59, 0.64, 0.25, 0.25], facecolor=CARD_FACE_COLOR)
         
         commit_ax.pie(
             [self.total_commits, 1],
@@ -131,15 +110,10 @@ class DashboardGenerator:
                          ha="center", va="center",
                          fontsize=14, color="#ffffff")
 
-    # --- Gráfico 2: BARRAS HORIZONTAIS (NOVO e MELHORADO) ---
     def _draw_languages_bar(self, max_langs=7):
-        """Desenha um gráfico de barras horizontais para as linguagens mais usadas."""
-        
         if not self.langs or self.total_repos == 0:
             lang_ax = self.fig.add_axes([0.10, 0.20, 0.75, 0.30], facecolor=CARD_FACE_COLOR)
-            lang_ax.text(0.5, 0.5, "Dados de Linguagem Indisponíveis.", 
-                         ha="center", va="center", fontsize=16, color="#ff4d6d", 
-                         transform=lang_ax.transAxes)
+            lang_ax.text(0.5, 0.5, "Dados de Linguagem Indisponíveis.", ha="center", va="center", fontsize=16, color="#ff4d6d", transform=lang_ax.transAxes)
             lang_ax.axis('off')
             return
 
@@ -147,26 +121,24 @@ class DashboardGenerator:
         labels = [lang[0] for lang in top_langs]
         sizes = [lang[1] for lang in top_langs]
         
-        # Calcular percentuais
         percentages = [(s / self.total_repos) * 100 for s in sizes]
         
-        # Inverter para ranking (maior no topo)
         labels.reverse()
         percentages.reverse()
 
-        lang_ax = self.fig.add_axes([0.10, 0.20, 0.75, 0.30], facecolor=CARD_FACE_COLOR)
+        # NOVO POSICIONAMENTO E DIMENSÃO PARA MELHOR ESPAÇO
+        lang_ax = self.fig.add_axes([0.08, 0.20, 0.80, 0.35], facecolor=CARD_FACE_COLOR)
         
-        # Desenho das barras
         bars = lang_ax.barh(labels, percentages, height=0.6, color=CARD_BORDER_COLOR)
 
-        # Estilização
         lang_ax.set_xticks([])
-        lang_ax.tick_params(axis='y', length=0, labelsize=14, pad=10)
+        # Adicionar mais padding para os nomes das linguagens
+        lang_ax.tick_params(axis='y', length=0, labelsize=14, pad=15) 
 
-        # Adicionar o percentual ao lado de cada barra
         for bar in bars:
             width = bar.get_width()
-            lang_ax.text(width + 1.5, bar.get_y() + bar.get_height()/2,
+            # Ajustar a posição do texto um pouco mais para a direita
+            lang_ax.text(width + 1.8, bar.get_y() + bar.get_height()/2, 
                          f'{width:.1f}%',
                          va='center', color=KPI_TEXT_COLOR, fontsize=12, fontweight='bold')
 
@@ -176,7 +148,6 @@ class DashboardGenerator:
         lang_ax.spines['bottom'].set_color('#334155')
 
     def _add_footer(self):
-        """Adiciona o rodapé com a data de atualização."""
         now = datetime.now().strftime("%d/%m/%Y %H:%M")
         self.ax.text(0.50, 0.05,
                      f"Atualizado automaticamente em {now}",
@@ -185,19 +156,18 @@ class DashboardGenerator:
                      ha="center",
                      transform=self.ax.transAxes)
 
-    # --- Método Principal de Geração ---
     def generate(self, output_path=OUTPUT_PATH):
-        """Método principal para gerar o dashboard."""
         self._collect_data()
         self._setup_figure()
         self._draw_layout()
         self._draw_kpis()
         self._draw_commits_donut()
-        self._draw_languages_bar() # Chamando o novo gráfico de barras
+        self._draw_languages_bar()
         self._add_footer()
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        plt.savefig(output_path, dpi=300, bbox_inches="tight")
+        # O bbox_inches="tight" agora deve funcionar melhor com o aumento de espaço
+        plt.savefig(output_path, dpi=300, bbox_inches="tight") 
         plt.close(self.fig)
 
         print(f"Dashboard gerado com sucesso em {output_path}")
