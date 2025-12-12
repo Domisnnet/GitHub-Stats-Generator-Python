@@ -1,156 +1,157 @@
-import os
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
-from utils.plot_theme import apply_dark_tech_theme
-from utils.github_api import get_repos, get_commit_activity
+import matplotlib.patches as FancyBox
+import numpy as np
+from github import Github
+import os
 
-USERNAME = "Domisnnet"
-OUTPUT_PATH = "output/dashboard.png"
+# -------------------------------
+# CONFIGURAÇÕES GERAIS PREMIUM
+# -------------------------------
+plt.rcParams['figure.figsize'] = (16, 10)
+plt.rcParams['figure.dpi'] = 120
+plt.rcParams["axes.facecolor"] = "#050A1A"
+plt.rcParams["figure.facecolor"] = "#050A1A"
+plt.rcParams["savefig.facecolor"] = "#050A1A"
 
-os.makedirs("output", exist_ok=True)
+PRIMARY = "#2BD1FF"     # Azul neon elegante
+SECONDARY = "#00A3FF"   # Azul mais profundo
+TEXT = "#EEEEEE"        # Texto claro premium
 
 
-def rounded_panel(ax, x, y, width, height, radius=0.15, color="#10121a", alpha=0.9):
-    """Cria um painel com bordas arredondadas, estilo card moderno."""
-    box = FancyBboxPatch(
-        (x, y),
-        width,
-        height,
-        boxstyle=f"round,pad=0.02,rounding_size={radius}",
-        linewidth=1.2,
-        edgecolor="#303542",
-        facecolor=color,
-        alpha=alpha,
+# -------------------------------
+# OBTÉM DADOS DO GITHUB
+# -------------------------------
+token = os.getenv("GITHUB_TOKEN")
+username = os.getenv("GITHUB_USERNAME")
+
+g = Github(token)
+user = g.get_user()
+
+repos = list(user.get_repos())
+total_repos = len(repos)
+active_repos = sum(1 for r in repos if not r.archived)
+
+total_commits = 0
+for repo in repos:
+    try:
+        commits = repo.get_commits(author=user)
+        total_commits += commits.totalCount
+    except:
+        pass
+
+# fake para teste visual (remova depois se não quiser)
+# total_commits = 255
+
+languages = {}
+for repo in repos:
+    langs = repo.get_languages()
+    for lang, count in langs.items():
+        languages[lang] = languages.get(lang, 0) + count
+
+sorted_langs = sorted(languages.items(), key=lambda x: x[1], reverse=True)
+labels = [l[0] for l in sorted_langs]
+sizes = [l[1] for l in sorted_langs]
+
+
+# -------------------------------
+# FUNÇÃO PARA CRIAR CARD PREMIUM
+# -------------------------------
+def add_card(ax, title):
+    rect = FancyBox.FancyBboxPatch(
+        (0, 0),
+        1,
+        1,
+        boxstyle="round,pad=0.03,rounding_size=0.14",
+        linewidth=2,
+        edgecolor=PRIMARY,
+        facecolor="#0B152E",
+        transform=ax.transAxes,
+        zorder=-1
     )
-    ax.add_patch(box)
-
-
-def generate_dashboard():
-    apply_dark_tech_theme()
-
-    repos = get_repos(USERNAME)
-
-    total_commits = 0
-    total_repos = len(repos)
-
-    for repo in repos:
-        activity = get_commit_activity(repo["full_name"])
-        if isinstance(activity, list):
-            for week in activity:
-                total_commits += week["total"]
-
-    # Layout da figura
-    fig = plt.figure(figsize=(12, 6), dpi=300)
-    ax = fig.add_subplot(111)
-
-    # Remove eixos
-    ax.axis("off")
-
-    # Painel de fundo com bordas arredondadas
-    rounded_panel(ax, 0.02, 0.02, 0.96, 0.96, radius=0.08, color="#0c0e14", alpha=1)
-
-    # Título central
-    ax.text(
-        0.5,
-        0.92,
-        f"GitHub Dashboard — {USERNAME}",
-        ha="center",
-        va="center",
-        fontsize=26,
-        fontweight="bold",
-        color="#F0F3FF",
-    )
-
-    # Subtítulo
-    ax.text(
-        0.5,
-        0.87,
-        "Resumo geral de contribuições e repositórios",
-        ha="center",
-        va="center",
-        fontsize=14,
-        color="#aeb6d8",
-    )
-
-    # Painel 1 — Total de commits
-    rounded_panel(ax, 0.08, 0.52, 0.40, 0.30, radius=0.07, color="#141722")
-    ax.text(
-        0.28,
-        0.67,
-        "Commits no Último Ano",
-        ha="center",
-        va="center",
-        fontsize=16,
-        fontweight="bold",
-        color="#E6E9F5",
-    )
-    ax.text(
-        0.28,
-        0.58,
-        f"{total_commits:,}".replace(",", "."),
-        ha="center",
-        va="center",
-        fontsize=34,
-        fontweight="bold",
-        color="#4f9bff",
-    )
-
-    # Painel 2 — Total de repositórios
-    rounded_panel(ax, 0.52, 0.52, 0.40, 0.30, radius=0.07, color="#141722")
-    ax.text(
-        0.72,
-        0.67,
-        "Repositórios Públicos",
-        ha="center",
-        va="center",
-        fontsize=16,
-        fontweight="bold",
-        color="#E6E9F5",
-    )
-    ax.text(
-        0.72,
-        0.58,
-        f"{total_repos}",
-        ha="center",
-        va="center",
-        fontsize=34,
-        fontweight="bold",
-        color="#4fffba",
-    )
-
-    # Painel inferior com destaque
-    rounded_panel(ax, 0.08, 0.10, 0.84, 0.32, radius=0.07, color="#1a1d29")
+    ax.add_patch(rect)
 
     ax.text(
-        0.50,
-        0.32,
-        "Resumo Executivo",
+        0.5, 0.92, title,
+        color=TEXT,
+        fontsize=18,
         ha="center",
         va="center",
-        fontsize=20,
-        fontweight="bold",
-        color="#F0F3FF",
+        weight="bold",
+        family="DejaVu Sans"
     )
 
-    ax.text(
-        0.50,
-        0.19,
-        f"- Total de commits no último ano: {total_commits:,}".replace(",", ".")
-        + f"\n- Total de repositórios públicos: {total_repos}"
-        + "\n- Dados atualizados automaticamente via GitHub Actions",
-        ha="center",
-        va="center",
-        fontsize=12,
-        color="#c1c7dd",
-        linespacing=1.6,
-    )
-
-    # Salvar
-    plt.savefig(OUTPUT_PATH, dpi=300, bbox_inches="tight")
-    plt.close()
-
-    print(f"Dashboard gerado com sucesso em: {OUTPUT_PATH}")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_frame_on(False)
 
 
-if __name__ == "__main__":
-    generate_dashboard()
+# --------------------------------------
+# CONSTRUÇÃO DO DASHBOARD 2x2 PREMIUM
+# --------------------------------------
+fig, axs = plt.subplots(2, 2)
+
+# CARD 1 - OVERVIEW
+ax1 = axs[0][0]
+add_card(ax1, "Visão Geral do GitHub")
+
+ax1.text(
+    0.5, 0.55,
+    f"Repositórios Totais: {total_repos}\n"
+    f"Repositórios Ativos: {active_repos}\n"
+    f"Commits no Último Ano: {total_commits}",
+    color=TEXT,
+    ha="center",
+    va="center",
+    fontsize=14
+)
+
+# CARD 2 - DONUT COMMITS
+ax2 = axs[0][1]
+add_card(ax2, "Commits (Donut)")
+
+# Donut
+values = [total_commits]
+ax2.pie(
+    values,
+    radius=0.8,
+    wedgeprops=dict(width=0.35, edgecolor='none'),
+    colors=[PRIMARY]
+)
+
+ax2.text(
+    0.5, 0.5,
+    f"{total_commits}",
+    color=TEXT,
+    fontsize=24,
+    ha="center",
+    va="center",
+    weight="bold"
+)
+
+# CARD 3 & 4 — LINGUAGENS (ocupando ambas as colunas da linha de baixo)
+# Unifica as duas células inferiores para criar um card wide premium
+ax3 = fig.add_subplot(2, 1, 2)
+add_card(ax3, "Linguagens Mais Usadas")
+
+# Pie grande
+ax3.pie(
+    sizes,
+    labels=labels,
+    autopct='%1.1f%%',
+    pctdistance=0.75,
+    labeldistance=1.05,
+    textprops={'color': TEXT, 'fontsize': 10},
+    wedgeprops=dict(edgecolor='none'),
+)
+
+# Centraliza totalmente
+ax3.set_position([0.05, 0.03, 0.9, 0.42])
+
+# -------------------------------
+# SALVAR SAÍDA
+# -------------------------------
+output_path = "output/github-stats.png"
+plt.savefig(output_path, dpi=140, bbox_inches="tight")
+plt.close()
+
+print("Dashboard premium gerado com sucesso:", output_path)
