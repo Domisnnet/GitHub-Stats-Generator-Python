@@ -5,8 +5,6 @@ from datetime import datetime
 from collections import Counter
 import requests
 import time 
-
-# Importações CORRIGIDAS: Usando 'utils'
 from utils.github_api import get_repos, get_commit_activity
 from utils.plot_theme import apply_dark_tech_theme, apply_vertical_gradient
 
@@ -76,8 +74,7 @@ class DashboardGenerator:
     def _setup_figure(self):
         apply_dark_tech_theme()
         
-        # Aumentar um pouco a figura principal (opcional)
-        self.fig = plt.figure(figsize=(16, 9.5), dpi=300) 
+        self.fig = plt.figure(figsize=(17, 10), dpi=300) 
         self.ax = self.fig.add_subplot(111)
         self.ax.set_facecolor("#0a0f1f")
         
@@ -88,17 +85,15 @@ class DashboardGenerator:
     def _draw_layout(self):
         self._draw_card(0.05, 0.60, 0.40, 0.30, "GitHub Overview")
         self._draw_card(0.50, 0.60, 0.40, 0.30, "Total Commits (Donut)")
-        # Ajustar a altura do card de linguagens para melhor visualização
         self._draw_card(0.05, 0.15, 0.85, 0.40, "Top Linguagens (Ranking)") 
 
     def _draw_kpis(self):
-        self.ax.text(0.07, 0.82, f"Repositórios Totais: {self.total_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
-        self.ax.text(0.07, 0.78, f"Repositórios Ativos: {self.active_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
-        self.ax.text(0.07, 0.74, f"Commits Totais: {self.total_commits}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.07, 0.83, f"Repositórios Totais: {self.total_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.07, 0.77, f"Repositórios Ativos: {self.active_repos}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
+        self.ax.text(0.07, 0.71, f"Commits Totais: {self.total_commits}", color=KPI_TEXT_COLOR, fontsize=16, transform=self.ax.transAxes)
 
     def _draw_commits_donut(self):
-        # NOVO POSICIONAMENTO PARA MELHOR CENTRALIZAÇÃO
-        commit_ax = self.fig.add_axes([0.59, 0.64, 0.25, 0.25], facecolor=CARD_FACE_COLOR)
+        commit_ax = self.fig.add_axes([0.60, 0.65, 0.25, 0.25], facecolor=CARD_FACE_COLOR)
         
         commit_ax.pie(
             [self.total_commits, 1],
@@ -125,20 +120,16 @@ class DashboardGenerator:
         
         labels.reverse()
         percentages.reverse()
-
-        # NOVO POSICIONAMENTO E DIMENSÃO PARA MELHOR ESPAÇO
-        lang_ax = self.fig.add_axes([0.08, 0.20, 0.80, 0.35], facecolor=CARD_FACE_COLOR)
+        lang_ax = self.fig.add_axes([0.10, 0.22, 0.78, 0.30], facecolor=CARD_FACE_COLOR)
         
         bars = lang_ax.barh(labels, percentages, height=0.6, color=CARD_BORDER_COLOR)
 
         lang_ax.set_xticks([])
-        # Adicionar mais padding para os nomes das linguagens
-        lang_ax.tick_params(axis='y', length=0, labelsize=14, pad=15) 
+        lang_ax.tick_params(axis='y', length=0, labelsize=14, pad=20) 
 
         for bar in bars:
             width = bar.get_width()
-            # Ajustar a posição do texto um pouco mais para a direita
-            lang_ax.text(width + 1.8, bar.get_y() + bar.get_height()/2, 
+            lang_ax.text(width + 2.5, bar.get_y() + bar.get_height()/2, 
                          f'{width:.1f}%',
                          va='center', color=KPI_TEXT_COLOR, fontsize=12, fontweight='bold')
 
@@ -166,7 +157,6 @@ class DashboardGenerator:
         self._add_footer()
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        # O bbox_inches="tight" agora deve funcionar melhor com o aumento de espaço
         plt.savefig(output_path, dpi=300, bbox_inches="tight") 
         plt.close(self.fig)
 
