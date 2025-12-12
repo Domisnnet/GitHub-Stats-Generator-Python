@@ -1,3 +1,4 @@
 requests
 matplotlib
 beautifulsoup4
+PyGithub==2.3.0
