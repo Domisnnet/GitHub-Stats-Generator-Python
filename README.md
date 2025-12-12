@@ -10,7 +10,7 @@ Projeto automatizado que coleta estatísticas da conta GitHub (`Domisnnet`) e ge
 ### Estatísticas mais recentes
 A imagem abaixo é atualizada automaticamente todos os dias às 00:00 UTC:
 
-<img src="./output/github-stats.png" width="850" />
+<img src="https://github.com/Domisnnet/GitHub-Stats-Generator/blob/main/output/github-stats.png" width="850" />
 
 ---
 
