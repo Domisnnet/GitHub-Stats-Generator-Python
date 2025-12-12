@@ -1,93 +1,157 @@
-import os
 import matplotlib.pyplot as plt
+import matplotlib.patches as FancyBox
 import numpy as np
 from github import Github
+import os
 
-# ==========================
-# Valida Token e Usuário
-# ==========================
+# -------------------------------
+# CONFIGURAÇÕES GERAIS PREMIUM
+# -------------------------------
+plt.rcParams['figure.figsize'] = (16, 10)
+plt.rcParams['figure.dpi'] = 120
+plt.rcParams["axes.facecolor"] = "#050A1A"
+plt.rcParams["figure.facecolor"] = "#050A1A"
+plt.rcParams["savefig.facecolor"] = "#050A1A"
+
+PRIMARY = "#2BD1FF"     # Azul neon elegante
+SECONDARY = "#00A3FF"   # Azul mais profundo
+TEXT = "#EEEEEE"        # Texto claro premium
+
+
+# -------------------------------
+# OBTÉM DADOS DO GITHUB
+# -------------------------------
 token = os.getenv("GITHUB_TOKEN")
 username = os.getenv("GITHUB_USERNAME")
 
-if not token:
-    raise Exception("ERRO FATAL: GITHUB_TOKEN não foi carregado no ambiente.")
-
-if not username:
-    raise Exception("ERRO FATAL: GITHUB_USERNAME não foi carregado no ambiente.")
-
 g = Github(token)
-user = g.get_user(username)
+user = g.get_user()
 
-# ==========================
-# Coleta de dados
-# ==========================
 repos = list(user.get_repos())
-
 total_repos = len(repos)
-total_stars = sum(r.stargazers_count for r in repos)
-total_forks = sum(r.forks_count for r in repos)
-total_watchers = sum(r.watchers_count for r in repos)
+active_repos = sum(1 for r in repos if not r.archived)
 
-# Linguagens (top 5)
-language_count = {}
-for r in repos:
-    lang = r.language or "Outros"
-    language_count[lang] = language_count.get(lang, 0) + 1
+total_commits = 0
+for repo in repos:
+    try:
+        commits = repo.get_commits(author=user)
+        total_commits += commits.totalCount
+    except:
+        pass
 
-language_sorted = dict(sorted(language_count.items(), key=lambda x: x[1], reverse=True)[:5])
+# fake para teste visual (remova depois se não quiser)
+# total_commits = 255
 
-# ==========================
-# Geração do Dashboard Premium
-# ==========================
-plt.style.use("dark_background")
-fig = plt.figure(figsize=(12, 8), dpi=150)
-fig.patch.set_facecolor("#0a0a0a")
+languages = {}
+for repo in repos:
+    langs = repo.get_languages()
+    for lang, count in langs.items():
+        languages[lang] = languages.get(lang, 0) + count
 
-# Card 1 - Visão Geral
-ax1 = plt.subplot2grid((2, 3), (0, 0), colspan=3)
-ax1.set_facecolor("#111111")
-ax1.set_title("GitHub Dashboard Premium", fontsize=22, pad=20)
+sorted_langs = sorted(languages.items(), key=lambda x: x[1], reverse=True)
+labels = [l[0] for l in sorted_langs]
+sizes = [l[1] for l in sorted_langs]
 
-texto = (
-    f"Repositórios públicos: {total_repos}\n"
-    f"Total de Stars: {total_stars}\n"
-    f"Total de Forks: {total_forks}\n"
-    f"Total de Watchers: {total_watchers}\n"
+
+# -------------------------------
+# FUNÇÃO PARA CRIAR CARD PREMIUM
+# -------------------------------
+def add_card(ax, title):
+    rect = FancyBox.FancyBboxPatch(
+        (0, 0),
+        1,
+        1,
+        boxstyle="round,pad=0.03,rounding_size=0.14",
+        linewidth=2,
+        edgecolor=PRIMARY,
+        facecolor="#0B152E",
+        transform=ax.transAxes,
+        zorder=-1
+    )
+    ax.add_patch(rect)
+
+    ax.text(
+        0.5, 0.92, title,
+        color=TEXT,
+        fontsize=18,
+        ha="center",
+        va="center",
+        weight="bold",
+        family="DejaVu Sans"
+    )
+
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_frame_on(False)
+
+
+# --------------------------------------
+# CONSTRUÇÃO DO DASHBOARD 2x2 PREMIUM
+# --------------------------------------
+fig, axs = plt.subplots(2, 2)
+
+# CARD 1 - OVERVIEW
+ax1 = axs[0][0]
+add_card(ax1, "Visão Geral do GitHub")
+
+ax1.text(
+    0.5, 0.55,
+    f"Repositórios Totais: {total_repos}\n"
+    f"Repositórios Ativos: {active_repos}\n"
+    f"Commits no Último Ano: {total_commits}",
+    color=TEXT,
+    ha="center",
+    va="center",
+    fontsize=14
 )
 
-ax1.text(0.02, 0.3, texto, fontsize=16, va="center")
-ax1.axis("off")
+# CARD 2 - DONUT COMMITS
+ax2 = axs[0][1]
+add_card(ax2, "Commits (Donut)")
 
-# Card 2 - Linguagens
-ax2 = plt.subplot2grid((2, 3), (1, 0))
-ax2.set_facecolor("#141414")
-langs = list(language_sorted.keys())
-vals = list(language_sorted.values())
-ax2.barh(langs, vals)
-ax2.set_title("Top Linguagens")
-ax2.grid(False)
+# Donut
+values = [total_commits]
+ax2.pie(
+    values,
+    radius=0.8,
+    wedgeprops=dict(width=0.35, edgecolor='none'),
+    colors=[PRIMARY]
+)
 
-# Card 3 - Distribuições
-ax3 = plt.subplot2grid((2, 3), (1, 1))
-ax3.set_facecolor("#141414")
-sizes = vals
-ax3.pie(sizes, labels=langs, autopct='%1.1f%%', startangle=90)
-ax3.set_title("Distribuição (%)")
+ax2.text(
+    0.5, 0.5,
+    f"{total_commits}",
+    color=TEXT,
+    fontsize=24,
+    ha="center",
+    va="center",
+    weight="bold"
+)
 
-# Card 4 - Atividade (mock premium)
-ax4 = plt.subplot2grid((2, 3), (1, 2))
-ax4.set_facecolor("#141414")
-ax4.plot(np.random.randint(0, 50, 12), linewidth=3)
-ax4.set_title("Atividade (12 meses)")
-ax4.grid(False)
+# CARD 3 & 4 — LINGUAGENS (ocupando ambas as colunas da linha de baixo)
+# Unifica as duas células inferiores para criar um card wide premium
+ax3 = fig.add_subplot(2, 1, 2)
+add_card(ax3, "Linguagens Mais Usadas")
 
-plt.tight_layout()
+# Pie grande
+ax3.pie(
+    sizes,
+    labels=labels,
+    autopct='%1.1f%%',
+    pctdistance=0.75,
+    labeldistance=1.05,
+    textprops={'color': TEXT, 'fontsize': 10},
+    wedgeprops=dict(edgecolor='none'),
+)
 
-# ==========================
-# Exportação
-# ==========================
-os.makedirs("output", exist_ok=True)
-plt.savefig("output/dashboard.png", dpi=300, bbox_inches="tight")
+# Centraliza totalmente
+ax3.set_position([0.05, 0.03, 0.9, 0.42])
+
+# -------------------------------
+# SALVAR SAÍDA
+# -------------------------------
+output_path = "output/github-stats.png"
+plt.savefig(output_path, dpi=140, bbox_inches="tight")
 plt.close()
 
-print("Dashboard gerado com sucesso.")
+print("Dashboard gerado com sucesso:", output_path)
