@@ -1,105 +1,78 @@
+# generators/generate_commits.py
+
 import os
-import sys
-import traceback
 from datetime import datetime
-
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
 
-# LOGS DE DIAGNÓSTICO
-print("=== DEBUG: Iniciando generate_commits.py ===")
-print("Working directory:", os.getcwd())
-print("Python path:", sys.path)
+from utils.plot_theme import apply_dark_tech_theme, apply_vertical_gradient
+from utils.github_api import get_repos, get_commit_activity
 
-# Garante diretório correto
-OUTPUT_DIR = "output"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-print("Output directory absolute path:", os.path.abspath(OUTPUT_DIR))
-print("Conteúdo inicial da pasta output:", os.listdir(OUTPUT_DIR))
-
-# IMPORTS DO PROJETO
-try:
-    from utils.plot_theme import apply_dark_tech_theme
-    from utils.github_api import get_repos, get_commit_activity
-    print("Imports internos OK.")
-except Exception as e:
-    print("ERRO IMPORTANDO utils/:")
-    traceback.print_exc()
-    # Cria arquivo placeholder indicando erro
-    with open(os.path.join(OUTPUT_DIR, "error_imports.txt"), "w") as f:
-        f.write(str(e))
-    sys.exit(1)
-
+OUTPUT_PATH = "output/github-stats.png"
 USERNAME = "Domisnnet"
 
-
 def generate_commits_graph():
-    print("\n=== DEBUG: Iniciando coleta de repositórios ===")
+    apply_dark_tech_theme()
 
-    try:
-        repos = get_repos(USERNAME)
-        if not repos:
-            raise ValueError("Nenhum repositório foi retornado pela API.")
-        print(f"Repositórios encontrados: {len(repos)}")
-    except Exception as e:
-        print("ERRO ao obter repositórios:")
-        traceback.print_exc()
-        with open(os.path.join(OUTPUT_DIR, "error_repos.txt"), "w") as f:
-            f.write(str(e))
-        sys.exit(1)
+    repos = get_repos(USERNAME)
 
     total_commits = 0
 
-    print("\n=== DEBUG: Iniciando coleta de commits por repositório ===")
     for repo in repos:
-        try:
-            activity = get_commit_activity(repo["full_name"])
+        activity = get_commit_activity(repo["full_name"])
+        if isinstance(activity, list):
+            for week in activity:
+                total_commits += week["total"]
 
-            if isinstance(activity, list):
-                soma = sum(week.get("total", 0) for week in activity)
-                print(f"{repo['full_name']}: {soma} commits")
-                total_commits += soma
-            else:
-                print(f"{repo['full_name']}: API retornou formato inesperado: {activity}")
+    # Cria figura
+    fig, ax = plt.subplots(figsize=(9, 3.8))
 
-        except Exception as e:
-            print(f"ERRO lendo commits do repo {repo['full_name']}:")
-            traceback.print_exc()
+    # Aplica gradiente moderno
+    apply_vertical_gradient(ax)
 
-    print("\nTotal de commits no ano:", total_commits)
+    # Barra neon
+    bar = ax.bar(
+        ["Commits no Ano"],
+        [total_commits],
+        width=0.45,
+        color="#39C0FF",
+        edgecolor="#39C0FF",
+        linewidth=1.8,
+        zorder=3
+    )
 
-    # APLICA TEMA
-    try:
-        apply_dark_tech_theme()
-    except Exception:
-        print("ERRO aplicando tema do gráfico.")
-        traceback.print_exc()
+    # Glow sutil
+    for rect in bar:
+        rect.set_path_effects([
+            pe.withStroke(linewidth=8, foreground="#39C0FF50"),
+            pe.Normal()
+        ])
 
-    print("\n=== DEBUG: Gerando gráfico ===")
-    try:
-        fig, ax = plt.subplots(figsize=(8, 3))
-        ax.bar(["Commits no ano"], [total_commits], width=0.4)
-        ax.set_title("Commits no Último Ano", pad=12)
+    # Valor acima da barra
+    ax.text(
+        0, total_commits + (total_commits * 0.05),
+        f"{total_commits}",
+        ha="center",
+        fontsize=18,
+        color="#6ED8FF",
+        fontweight="bold",
+        zorder=5,
+        path_effects=[
+            pe.withStroke(linewidth=4, foreground="#00000080"),
+            pe.Normal()
+        ]
+    )
 
-        plt.tight_layout()
+    ax.set_title("Commits no Último Ano", pad=14, fontsize=20)
+    ax.grid(axis="y", color="#2A2A2A", linestyle="--", linewidth=0.5)
 
-        output_path = os.path.join(OUTPUT_DIR, "github-stats.png")
-        plt.savefig(output_path, dpi=300)
-        plt.close()
+    plt.tight_layout()
 
-        print("Gráfico salvo com sucesso em:", os.path.abspath(output_path))
-        print("Conteúdo final da pasta output:", os.listdir(OUTPUT_DIR))
+    # Garante que a pasta output existe
+    os.makedirs("output", exist_ok=True)
 
-    except Exception as e:
-        print("ERRO ao gerar ou salvar o gráfico:")
-        traceback.print_exc()
-
-        with open(os.path.join(OUTPUT_DIR, "error_graph.txt"), "w") as f:
-            f.write(str(e))
-
-        sys.exit(1)
-
+    plt.savefig(OUTPUT_PATH, dpi=300, bbox_inches="tight")
+    plt.close()
 
 if __name__ == "__main__":
     generate_commits_graph()
-    print("\n=== generate_commits.py finalizado com sucesso ===")
