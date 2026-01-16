@@ -10,7 +10,7 @@
   <br /><br />
   <img src="assets/imagens/github-stats.svg" width="850" alt="Estatísticas Geradas" />
 </div>
-<p>Gráfico atualizado e refatorado por: actions-user</p>
+<p>Gráfico atualizado e refatorado por: **actions-user**</p>
 
 <br />
 
