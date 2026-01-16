@@ -1,4 +1,4 @@
-<h2 id="sobre-o-projeto">1. 📊 GitHub Stats Generator - Automação Visual 📊</h2>
+<h2 id="sobre-o-projeto">1. GitHub Stats Generator - Automação Visual 📊</h2>
 
 ![Status do Deploy](https://img.shields.io/badge/Status-Automated-brightgreen)
 ![Tecnologias](https://img.shields.io/badge/Tecnologias-Python%20%7C%20GitHub%20Actions-blue)
