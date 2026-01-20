@@ -8,7 +8,7 @@
   <br />
   <strong>Automação Avançada de Estatísticas — Visualização Premium em Tempo Real</strong>
   <br /><br />
-  <img src="assets/imagens/github-stats.png" width="850" alt="Estatísticas Geradas" />
+  <img src="assets/imagens/dashboard.png" width="850" alt="Estatísticas Geradas" />
 </div>
 
 Gráfico atualizado e refatorado por: **actions-user**
