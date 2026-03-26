@@ -2,7 +2,7 @@
 
 ![Status do Deploy](https://img.shields.io/badge/Status-Automated-brightgreen)
 ![Tecnologias](https://img.shields.io/badge/Tecnologias-Python%20%7C%20GitHub%20Actions-blue)
-[![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Generator/blob/main/LICENSE)
+[![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Gnr/blob/main/LICENSE)
 
 <div align="center">
   <br />
@@ -47,7 +47,7 @@ Deseja testar o gerador no seu ambiente? Siga os comandos:
 
 ```bash
 # 1. Clone o repositório
-git clone [https://github.com/Domisnnet/github-stats-gnr](https://github.com/Domisnnet/github-stats-gnr)
+git clone [https://github.com/Domisnnet/GitHub-Stats-Gnr](https://github.com/Domisnnet/GitHub-Stats-Gnr)
 
 # 2. Instale as dependências
 pip install -r requirements.txt
@@ -87,7 +87,7 @@ A coleta de dados é modularizada. O script principal não conhece as regras da 
 <h2 id="estrutura-do-projeto">6. 📂 Estrutura do Projeto</h2>
 
 ```text
-github-stats-generator/
+Github-Stats-Gnr/
 │
 ├── .github/workflows/
 │   └── generate_stats.yml   # Automação com GitHub Actions
@@ -114,11 +114,17 @@ Deseja melhorar o design ou adicionar novas métricas? Siga o fluxo oficial:
 
 | Fase | Ação | Link / Comando |
 | :---: | :--- | :--- |
-| **01** | **Fork** | [![Fork](https://img.shields.io/badge/-Fazer%20Fork-blue?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Generator/fork) |
+| **01** | **Fork** | [![Fork](https://img.shields.io/badge/-Fazer%20Fork-blue?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr/fork) |
 | **02** | **Branch** | `git checkout -b feature/NovoGrafico` |
 | **03** | **Commit** | `git commit -m 'feat: add gráfico de estrelas'` |
 | **04** | **Push** | `git push origin feature/NovoGrafico` |
-| **05** | **PR** | [![Abrir PR](https://img.shields.io/badge/-Abrir%20PR-green?style=flat-square&logo=git)](https://github.com/Domisnnet/GitHub-Stats-Generator/compare) |
+| **05** | **PR** | [![Abrir PR](https://img.shields.io/badge/-Abrir%20PR-green?style=flat-square&logo=git)](https://github.com/Domisnnet/GitHub-Stats-Gnr/compare)
+
+### 🐛 Encontrou um problema?
+Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
+
+[![Issues Abertas](https://img.shields.io/github/issues/Domisnnet/Github-Stats-Gnr?style=flat-square&color=red&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr/issues)
+[![Report Bug](https://img.shields.io/badge/Reportar-Erro-critical?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr/issues/new)
 
 ---
 
@@ -145,7 +151,7 @@ Deseja melhorar o design ou adicionar novas métricas? Siga o fluxo oficial:
 
 Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
 
-[![Repositório](https://img.shields.io/badge/Repositório-GitHub--Stats--Generator-1DB954?style=for-the-badge&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Generator)
+[![Repositório](https://img.shields.io/badge/Repositório-GitHub--Stats--Gnr-1DB954?style=for-the-badge&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr)
 
 ---
 
@@ -164,12 +170,12 @@ O **GitHub Stats Generator** é o resultado de automação inteligente e design:
 
 <h2 id="licenca">11. 📄 Licença</h2>
 
-Este projeto está licenciado sob a [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Generator/blob/main/LICENSE)
+Este projeto está licenciado sob a [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Gnr/blob/main/LICENSE)
 
 ---
 
 <h2 id="perfil-do-github">12. 👨‍💻 Perfil do GitHub</h2>
 
 <a href="https://github.com/Domisnnet"> 
-    <img src="assets/imagens/DomisDev.png" width="120" style="border-radius: 50%" alt="Acessar perfil GitHub"> 
+    <img src="assets/imagens/DomisDev.png" width="90" style="border-radius: 50%" alt="Acessar perfil GitHub"> 
 </a>
