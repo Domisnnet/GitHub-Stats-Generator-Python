@@ -151,7 +151,7 @@ Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
 Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
 
-[![Repositório](https://img.shields.io/badge/Repositório-GitHub--Stats--Gnr-1DB954?style=for-the-badge&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr)
+[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub--Stats--Gnr-1DB954?style=for-the-badge&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr)
 
 ---
 
