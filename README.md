@@ -1,8 +1,12 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/domisnnet/Github-Stats-Gnr-Python?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/domisnnet/Github-Stats-Gnr-Python?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/domisnnet/Github-Stats-Gnr-Python?style=for-the-badge)
+
 <h2 id="sobre-o-projeto">1. GitHub Stats Generator - Automação Visual 📊</h2>
 
 ![Status do Deploy](https://img.shields.io/badge/Status-Automated-brightgreen)
 ![Tecnologias](https://img.shields.io/badge/Tecnologias-Python%20%7C%20GitHub%20Actions-blue)
-[![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Gnr/blob/main/LICENSE)
+[![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python/blob/main/LICENSE)
 
 <div align="center">
   <br />
@@ -47,7 +51,7 @@ Deseja testar o gerador no seu ambiente? Siga os comandos:
 
 ```bash
 # 1. Clone o repositório
-git clone [https://github.com/Domisnnet/GitHub-Stats-Gnr](https://github.com/Domisnnet/GitHub-Stats-Gnr)
+git clone [https://github.com/Domisnnet/GitHub-Stats-Gnr-Python](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python)
 
 # 2. Instale as dependências
 pip install -r requirements.txt
@@ -87,7 +91,7 @@ A coleta de dados é modularizada. O script principal não conhece as regras da 
 <h2 id="estrutura-do-projeto">6. 📂 Estrutura do Projeto</h2>
 
 ```text
-Github-Stats-Gnr/
+Github-Stats-Gnr-Python/
 │
 ├── .github/workflows/
 │   └── generate_stats.yml   # Automação com GitHub Actions
@@ -114,17 +118,17 @@ Deseja melhorar o design ou adicionar novas métricas? Siga o fluxo oficial:
 
 | Fase | Ação | Link / Comando |
 | :---: | :--- | :--- |
-| **01** | **Fork** | [![Fork](https://img.shields.io/badge/-Fazer%20Fork-blue?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr/fork) |
+| **01** | **Fork** | [![Fork](https://img.shields.io/badge/-Fazer%20Fork-blue?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python/fork) |
 | **02** | **Branch** | `git checkout -b feature/NovoGrafico` |
 | **03** | **Commit** | `git commit -m 'feat: add gráfico de estrelas'` |
 | **04** | **Push** | `git push origin feature/NovoGrafico` |
-| **05** | **PR** | [![Abrir PR](https://img.shields.io/badge/-Abrir%20PR-green?style=flat-square&logo=git)](https://github.com/Domisnnet/GitHub-Stats-Gnr/compare)
+| **05** | **PR** | [![Abrir PR](https://img.shields.io/badge/-Abrir%20PR-green?style=flat-square&logo=git)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python/compare)
 
 ### 🐛 Encontrou um problema?
 Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
-[![Issues Abertas](https://img.shields.io/github/issues/Domisnnet/Github-Stats-Gnr?style=flat-square&color=red&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr/issues)
-[![Report Bug](https://img.shields.io/badge/Reportar-Erro-critical?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr/issues/new)
+[![Issues Abertas](https://img.shields.io/github/issues/Domisnnet/Github-Stats-Gnr-Python?style=flat-square&color=red&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python/issues)
+[![Report Bug](https://img.shields.io/badge/Reportar-Erro-critical?style=flat-square&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python/issues/new)
 
 ---
 
@@ -151,7 +155,7 @@ Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
 Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
 
-[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub--Stats--Gnr-1DB954?style=for-the-badge&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr)
+[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub--Stats--Gnr--Python1DB954?style=for-the-badge&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python)
 
 ---
 
@@ -170,7 +174,7 @@ O **GitHub Stats Generator** é o resultado de automação inteligente e design:
 
 <h2 id="licenca">11. 📄 Licença</h2>
 
-Este projeto está licenciado sob a [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Gnr/blob/main/LICENSE)
+Este projeto está licenciado sob a [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Gnr-Python/blob/main/LICENSE)
 
 ---
 
