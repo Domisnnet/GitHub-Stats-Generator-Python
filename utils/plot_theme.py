@@ -3,7 +3,6 @@ import matplotlib as mpl
 import numpy as np
 
 def apply_dark_tech_theme():
-    # Definições globais de estilo
     plt.rcParams.update({
         "figure.facecolor": "#0A0A0D",
         "axes.facecolor": "#0A0A0D",
@@ -22,10 +21,8 @@ def apply_dark_tech_theme():
 def apply_vertical_gradient(ax, color_top="#0F0F1A", color_bottom="#0A0A0D"):
     import matplotlib.patches as patches
     import matplotlib.colors as mcolors
-
     gradient = np.linspace(0, 1, 256)
     gradient = np.vstack((gradient, gradient))
-
     ax.imshow(
         gradient,
         aspect='auto',
