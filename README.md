@@ -8,12 +8,10 @@
 ![Tecnologias](https://img.shields.io/badge/Tecnologias-Python%20%7C%20GitHub%20Actions-blue)
 [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python/blob/main/LICENSE)
 
-<div align="center">
-  <br />
-  <strong>Automação Avançada de Estatísticas — Visualização Premium em Tempo Real</strong>
-  <br /><br />
-  <img src="output/dashboard.png" width="850" alt="Estatísticas Geradas" />
-</div>
+<p align="center">
+  <strong>Dashboard Dinâmico</strong><br>
+  <img src="https://us-central1-github-stats-68157678-42e04.cloudfunctions.net/statsSvg?username=Domisnnet&theme=tokyonight" alt="Dashboard Animado" width="100%" />
+</p>
 
 Gráfico atualizado e refatorado por: **actions-user**
 
