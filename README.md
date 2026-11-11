@@ -11,7 +11,9 @@
 
 <p align="center">
   <strong>Dashboard Dinâmico</strong><br>
-  <img src="https://us-central1-github-stats-68157678-42e04.cloudfunctions.net/statsSvg?username=Domisnnet&theme=tokyonight" alt="Dashboard Animado" width="100%" />
+  <img src=
+    "https://us-central1-github-stats-68157678-42e04.cloudfunctions.net/statsSvg?username=Domisnnet&theme=tokyonight" alt="Dashboard Animado" width="100%" 
+  />
 </p>
 
 > Bem-vindo ao **GitHub Stats Generator**! Um projeto de engenharia de dados automatizado que coleta métricas da conta `Domisnnet` e gera visualizações profissionais com design *high-tech*. Esqueça atualizações manuais; aqui, o dado flui do servidor para o gráfico diariamente de forma totalmente autônoma.
@@ -38,20 +40,29 @@
 | **Visualização** | ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=flat-square&logo=python&logoColor=white) | Engine gráfica para geração do dashboard premium. |
 | **Integração** | ![GitHub API](https://img.shields.io/badge/GitHub_API-181717?style=flat-square&logo=github&logoColor=white) | Extração de métricas de repositórios e commits. |
 
+
 ---
 
 <h2 id="como-rodar-localmente">3. 🚀 Como Rodar Localmente</h2>
 
 Deseja testar o gerador no seu ambiente? Siga os comandos:
 
+
+<h4>1. Clone o repositório:</h4>
+
 ```bash
-# 1. Clone o repositório
 git clone [https://github.com/Domisnnet/GitHub-Stats-Generator-Python](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
+```
 
-# 2. Instale as dependências
+<h4>2. Instale as dependências:</h4>
+
+```bash
 pip install -r requirements.txt
+```
 
-# 3. Execute o gerador manualmente
+<h4>3. Execute o gerador manualmente:</h4>
+
+```bash
 python generators/generate_commits.py
 ```
 
@@ -87,22 +98,17 @@ A coleta de dados é modularizada. O script principal não conhece as regras da 
 
 ```text
 Github-Stats-Generator-Python/
-│
 ├── .github/workflows/
-│   └── generate_stats.yml   # Automação com GitHub Actions
-│
+│   └── generate_stats.yml   📌 Automação com GitHub Actions
 ├── generators/
-│   └── generate_commits.py  # Script principal de geração do gráfico
-│
+│   └── generate_commits.py  📌 Script principal de geração do gráfico
 ├── utils/
-│   ├── github_api.py        # Módulo de integração com a API do GitHub
-│   └── plot_theme.py        # Tema visual premium do gráfico
-│
+│   ├── github_api.py        📌 Módulo de integração com a API do GitHub
+│   └── plot_theme.py        📌 Tema visual premium do gráfico
 ├── output/
-│   ├── github-stats.png     # Estatística gerada (auto)
-│   └── .gitkeep             # Mantém a pasta versionada
-│
-└── requirements.txt         # Dependências do projeto
+│   ├── github-stats.png     📌 Estatística gerada (auto)
+│   └── .gitkeep             📌 Mantém a pasta versionada
+└── requirements.txt         📌 Dependências do projeto
 ```
 
 ---
@@ -119,7 +125,8 @@ Deseja melhorar o design ou adicionar novas métricas? Siga o fluxo oficial:
 | **04** | **Push** | `git push origin feature/NovoGrafico` |
 | **05** | **PR** | [![Abrir PR](https://img.shields.io/badge/-Abrir%20PR-green?style=flat-square&logo=git)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python/compare)
 
-### 🐛 Encontrou um problema?
+<h3>🐛 Encontrou um problema?</h3>
+
 Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
 [![Issues Abertas](https://img.shields.io/github/issues/Domisnnet/Github-Stats-Gnr-Python?style=flat-square&color=red&logo=github)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python/issues)
@@ -176,12 +183,16 @@ Este projeto está licenciado sob a &nbsp;[![Licença MIT](https://img.shields.i
 <h2 id="perfil-do-github">12. 👨‍💻 Perfil do GitHub</h2>
 
 <a href="https://github.com/Domisnnet"> 
-  <img src="assets/imagens/DomisDev.png" width="90" style="border-radius: 50%" alt="Acessar perfil GitHub"> 
+  <img src="assets/imagens/DomisDev.png" 
+    width="90" style="border-radius: 50%" alt="Acessar perfil GitHub"
+  > 
 </a>
 
 &nbsp;
 <p align="center">
   <a href="#sobre-o-projeto">
-    <img src="https://img.shields.io/badge/⬆️%20VOLTAR%20AO%20TOPO-26FF00?style=flat&labelColor=111827&color=0A0F1C" alt="Voltar ao topo" style="height: 30px;">
+    <img src=
+      "https://img.shields.io/badge/⬆️%20VOLTAR%20AO%20TOPO-26FF00?style=flat&labelColor=111827&color=0A0F1C" alt="Voltar ao topo" style="height: 30px;"
+    >
   </a>
 </p>
