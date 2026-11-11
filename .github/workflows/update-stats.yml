@@ -19,7 +19,7 @@ jobs:
           pip install requests matplotlib numpy python-dotenv
       - name: Rodar o Gerador de Stats
         env:
-          PERSONAL_GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          PERSONAL_GH_TOKEN: ${{ secrets.PERSONAL_GH_TOKEN }}
         run: python generate_stats.py
       - name: Commitar e Pushar alterações
         run: |
