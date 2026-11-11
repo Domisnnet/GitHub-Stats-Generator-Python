@@ -51,7 +51,7 @@ Deseja testar o gerador no seu ambiente? Siga os comandos:
 <h4>1. Clone o repositório:</h4>
 
 ```bash
-git clone [https://github.com/Domisnnet/GitHub-Stats-Generator-Python](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
+git clone https://github.com/Domisnnet/GitHub-Stats-Generator-Python
 ```
 
 <h4>2. Instale as dependências:</h4>
