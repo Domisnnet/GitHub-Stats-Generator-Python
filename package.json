@@ -1,0 +1,26 @@
+{
+  "name": "github-stats-generator-python",
+  "version": "1.0.0",
+  "description": "Gerador automático de estatísticas e gráficos do GitHub para o dashboard DomisDev.",
+  "main": "generate_stats.py",
+  "scripts": {
+    "start": "python generate_stats.py",
+    "setup": "pip install -r requirements.txt",
+    "clean": "rm -rf output/*.png output/*.json __pycache__"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Domisnnet/GitHub-Stats-Generator-Python.git"
+  },
+  "keywords": [
+    "github-stats",
+    "python",
+    "matplotlib",
+    "automation",
+    "domisdev"
+  ],
+  "author": "Dominique Marcelino Gonçalves (Domisnnet)",
+  "license": "MIT",
+  "bugs": { "url": "https://github.com/Domisnnet/GitHub-Stats-Generator-Python/issues" },
+  "homepage": "https://github.com/Domisnnet/GitHub-Stats-Generator-Python#readme"
+}
