@@ -1,11 +1,12 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/domisnnet/Github-Stats-Generator-Python?style=for-the-badge)
-![GitHub stars](https://img.shields.io/github/stars/domisnnet/Github-Stats-Generator-Python?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/domisnnet/Github-Stats-Generator-Python?style=for-the-badge)
+![Repo Size](https://img.shields.io/github/repo-size/Domisnnet/GitHub-Stats-Python?style=flat&label=REPO%20SIZE&labelColor=2d333b&color=0969da)
+![Stars](https://img.shields.io/github/stars/Domisnnet/Github-Stats-Generator-Python?style=flat&label=STARS&labelColor=2d333b&color=0969da)
+![Last Commit](https://img.shields.io/github/last-commit/Domisnnet/GitHub-Stats-Generator-Python?style=flat&label=LAST%20COMMIT&labelColor=2d333b&color=2ea44f)
+![Version](https://img.shields.io/github/package-json/v/Domisnnet/GitHub-Stats-Generator-Python?style=flat&label=VERSION&labelColor=2d333b&color=0969da&logo=python&logoColor=white)
 
 <h2 id="sobre-o-projeto">1. GitHub Stats Generator - Automação Visual 📊</h2>
 
-![Status do Deploy](https://img.shields.io/badge/Status-Automated-brightgreen)
-![Tecnologias](https://img.shields.io/badge/Tecnologias-Python%20%7C%20GitHub%20Actions-blue)
+![Status do Deploy](https://img.shields.io/badge/Status-Online-brightgreen)
+![Tecnologias](https://img.shields.io/badge/Tecnologias-HTML%20%7C%20CSS%20%7C%20JS%20%7C%20Python-blue)
 [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python/blob/main/LICENSE)
 
 <p align="center">
@@ -13,11 +14,7 @@
   <img src="https://us-central1-github-stats-68157678-42e04.cloudfunctions.net/statsSvg?username=Domisnnet&theme=tokyonight" alt="Dashboard Animado" width="100%" />
 </p>
 
-Gráfico atualizado e refatorado por: **actions-user**
-
-<br />
-
-Bem-vindo ao **GitHub Stats Generator**! Um projeto de engenharia de dados automatizado que coleta métricas da conta `Domisnnet` e gera visualizações profissionais com design *high-tech*. Esqueça atualizações manuais; aqui, o dado flui do servidor para o gráfico diariamente de forma totalmente autônoma.
+> Bem-vindo ao **GitHub Stats Generator**! Um projeto de engenharia de dados automatizado que coleta métricas da conta `Domisnnet` e gera visualizações profissionais com design *high-tech*. Esqueça atualizações manuais; aqui, o dado flui do servidor para o gráfico diariamente de forma totalmente autônoma.
 
 ---
 
@@ -153,7 +150,7 @@ Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
 Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
 
-[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGithub--Stats--Generator--Python-blue?style=for-the-badge&logo=github&labelColor=0d1117)](https://domisnnet.github.io/Github-Stats-Generator-Python/)
+[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub--Stats--Generator--Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
 
 ---
 
@@ -172,14 +169,14 @@ O **GitHub Stats Generator** é o resultado de automação inteligente e design:
 
 <h2 id="licenca">11. 📄 Licença</h2>
 
-Este projeto está licenciado sob a [![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python/blob/main/LICENSE)
+Este projeto está licenciado sob a &nbsp;[![Licença MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python/blob/main/LICENSE)
 
 ---
 
 <h2 id="perfil-do-github">12. 👨‍💻 Perfil do GitHub</h2>
 
 <a href="https://github.com/Domisnnet"> 
-    <img src="assets/imagens/DomisDev.png" width="90" style="border-radius: 50%" alt="Acessar perfil GitHub"> 
+  <img src="assets/imagens/DomisDev.png" width="90" style="border-radius: 50%" alt="Acessar perfil GitHub"> 
 </a>
 
 &nbsp;
