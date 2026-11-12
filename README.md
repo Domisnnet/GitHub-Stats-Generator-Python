@@ -155,9 +155,9 @@ Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
 <h2 id="codigo-fonte">9. 💻 Código Fonte</h2>
 
-Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
+> Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
 
-[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub--Stats--Generator--Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
+[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub-Stats-Generator-Python-4FC08D?style=for-the-badge&logo=github&labelColor=0d1117)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
 
 ---
 
