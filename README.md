@@ -157,8 +157,7 @@ Se algo não estiver funcionando como esperado, não hesite em abrir um chamado:
 
 > Deseja analisar a lógica de coleta de dados? Explore o código-fonte:
 
-[![Repositório](https://img.shields.io/badge/Repositório-Domisnnet%2FGitHub-Stats-Generator-Python-4FC08D?style=for-the-badge&logo=github&labelColor=0d1117)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
-
+[![Repositório](https://img.shields.io/badge/Ver_no-GitHub-4FC08D?style=for-the-badge&logo=github&labelColor=0d1117)](https://github.com/Domisnnet/GitHub-Stats-Generator-Python)
 ---
 
 <h2 id="créditos">10. 📝 Créditos & Reconhecimentos</h2>
