@@ -1,18 +1,18 @@
 {
   "username": "Domisnnet",
   "total_repos": 50,
-  "total_commits_year": 678,
+  "total_commits_year": 156,
   "total_stars": 57,
   "public_repos_api": 50,
   "top_languages": {
-    "HTML": 17,
+    "HTML": 16,
     "TypeScript": 7,
+    "JavaScript": 6,
     "CSS": 6,
     "Python": 5,
-    "JavaScript": 5,
     "Vue": 4,
     "Jupyter Notebook": 2,
     "SCSS": 2
   },
-  "last_updated": "2026-11-25T13:46:56.306565"
+  "last_updated": "2026-11-26T12:42:18.036003"
 }
